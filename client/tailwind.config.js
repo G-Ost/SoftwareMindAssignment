@@ -18,7 +18,17 @@ module.exports = {
       },
     },
     extend: {
+      fontSize: {
+        xs: "var(--font-size-xs)",
+        sm: "var(--font-size-sm)",
+        md: "var(--font-size-md)",
+        lg: "var(--font-size-lg)",
+        xl: "var(--font-size-xl)",
+      },
       colors: {
+        softBlue: "#D0E0E3",
+        oceanic: "#6a95a5",
+        // shadcn
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

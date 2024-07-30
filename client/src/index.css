@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --base-font-size: 16px;
+  --font-size-xs: calc(var(--base-font-size) * 1);
+  --font-size-sm: calc(var(--base-font-size) * 1.1667);
+  --font-size-md: calc(var(--base-font-size) * 1.3333);
+  --font-size-lg: calc(var(--base-font-size) * 1.5);
+  --font-size-xl: calc(var(--base-font-size) * 1.6667);
+}

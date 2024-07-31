@@ -1,22 +1,32 @@
-import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { DayPicker } from "react-day-picker";
 import { pl } from "date-fns/locale";
+import { DayPicker, DayPickerSingleProps } from "react-day-picker";
 
-import { cn } from "@/shadcn/lib/utils";
+import CalendarCaptionLabel from "@/components/common/CalendarCaptionLabel";
 import { buttonVariants } from "@/shadcn/components/ui/button";
+import { cn } from "@/shadcn/lib/utils";
+import { useState } from "react";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+export type CalendarProps = DayPickerSingleProps;
 
 function Calendar({ className, classNames, ...props }: CalendarProps) {
+  const [displayedMonth, setDisplayedMonth] = useState<Date>(
+    new Date("01-01-1970")
+  );
+
+  const onNavigation = (date: Date) => {
+    setDisplayedMonth(date);
+  };
+
   return (
     <DayPicker
       locale={pl}
       weekStartsOn={1}
+      month={displayedMonth}
       fixedWeeks
+      disableNavigation
       showOutsideDays
       className={cn(
-        "p-3 bg-oceanic text-white border-black border-2",
+        "p-3 bg-oceanic text-white border-black border-2 w-[330px] flex justify-center",
         className
       )}
       classNames={{
@@ -29,8 +39,8 @@ function Calendar({ className, classNames, ...props }: CalendarProps) {
           buttonVariants({ variant: "outline" }),
           "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
         ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
+        nav_button_previous: "absolute left-1 w-14 border-none",
+        nav_button_next: "absolute right-1 w-14 border-none",
         table: "w-full border-collapse space-y-1",
         head_row: "flex",
         head_cell:
@@ -54,8 +64,12 @@ function Calendar({ className, classNames, ...props }: CalendarProps) {
         ...classNames,
       }}
       components={{
-        IconLeft: () => <ChevronLeft className="h-4 w-4" />,
-        IconRight: () => <ChevronRight className="h-4 w-4" />,
+        CaptionLabel: ({ displayMonth }) => (
+          <CalendarCaptionLabel
+            displayedDate={displayMonth}
+            onNavigation={onNavigation}
+          />
+        ),
       }}
       {...props}
     />

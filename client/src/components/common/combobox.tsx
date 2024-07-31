@@ -51,7 +51,7 @@ const Combobox = ({ options, placeholder, value, setValue }: ComboboxProps) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="p-0 bg-oceanic text-white rounded border-2 border-white"
+        className="p-0 bg-oceanic text-white rounded border-2 border-black"
         style={{ width: triggerWidth }}
       >
         <Command>

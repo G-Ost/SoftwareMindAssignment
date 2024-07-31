@@ -1,6 +1,6 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { FontSizeMode, fontSizePropertyName, fontSizes } from "./constants";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+export const changeGlobalFontSize = (mode: FontSizeMode) => {
+  const newFontSize = fontSizes[mode];
+  document.documentElement.style.setProperty(fontSizePropertyName, newFontSize);
+};

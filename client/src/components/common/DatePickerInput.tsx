@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shadcn/lib/utils";
 import { Button } from "@/shadcn/components/ui/button";
 import { Calendar } from "@/shadcn/components/ui/calendar";
 import { pl } from "date-fns/locale";

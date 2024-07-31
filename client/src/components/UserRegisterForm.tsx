@@ -69,9 +69,9 @@ const UserRegisterForm = () => {
     if (birthDate) {
       const usersAge = differenceInYears(new Date(), birthDate);
       const isUserOlderThanSixty = usersAge > 60;
-      if (isUserOlderThanSixty) {
-        changeGlobalFontSize(FontSizeMode.LARGE);
-      }
+      changeGlobalFontSize(
+        isUserOlderThanSixty ? FontSizeMode.LARGE : FontSizeMode.NORMAL
+      );
     }
   }, [birthDate]);
 

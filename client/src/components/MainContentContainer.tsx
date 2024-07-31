@@ -8,9 +8,9 @@ import {
 
 const MainContentContainer = () => {
   return (
-    <div className="w-[500px] h-[500px] bg-softBlue rounded-xl p-6">
+    <div className="w-[500px]  bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
       <Tabs defaultValue="userRegister">
-        <TabsList className=" w-full justify-around ">
+        <TabsList className="w-full justify-around mb-4">
           <TabsTrigger value="userRegister">Rejestracja</TabsTrigger>
           <TabsTrigger value="usersTable">Użytkownicy</TabsTrigger>
         </TabsList>

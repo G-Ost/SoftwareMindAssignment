@@ -6,6 +6,10 @@ import * as yup from "yup";
 import DropdownInput from "./common/DropdownInput";
 import TextInput from "./common/TextInput";
 import DatePickerInput from "./common/DatePickerInput";
+import { useEffect } from "react";
+import { differenceInYears } from "date-fns";
+import { changeGlobalFontSize } from "@/lib/utils";
+import { FontSizeMode } from "@/lib/constants";
 
 // ToDo replace mocks with fetched data
 const continents = [
@@ -57,7 +61,19 @@ const UserRegisterForm = () => {
     },
   });
 
-  const { handleSubmit, control, setValue } = form;
+  const { handleSubmit, control, setValue, watch } = form;
+
+  const birthDate = watch("birthDate");
+
+  useEffect(() => {
+    if (birthDate) {
+      const usersAge = differenceInYears(new Date(), birthDate);
+      const isUserOlderThanSixty = usersAge > 60;
+      if (isUserOlderThanSixty) {
+        changeGlobalFontSize(FontSizeMode.LARGE);
+      }
+    }
+  }, [birthDate]);
 
   const onSubmit = (values: yup.InferType<typeof formSchema>) => {
     console.log(values);
@@ -98,7 +114,7 @@ const UserRegisterForm = () => {
           label="Data urodzenia"
         />
         <Button className="bg-oceanic text-white mt-4" type="submit">
-          Submit
+          Wyślij
         </Button>
       </form>
     </Form>

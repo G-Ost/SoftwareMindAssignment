@@ -19,11 +19,11 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        xs: "var(--font-size-xs)",
-        sm: "var(--font-size-sm)",
-        md: "var(--font-size-md)",
-        lg: "var(--font-size-lg)",
-        xl: "var(--font-size-xl)",
+        xs: "1rem",
+        sm: "1.1667rem",
+        md: "1.3333rem",
+        lg: "1.5rem",
+        xl: "1.6667rem",
       },
       colors: {
         softBlue: "#D0E0E3",

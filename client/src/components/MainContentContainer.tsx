@@ -8,7 +8,7 @@ import {
 
 const MainContentContainer = () => {
   return (
-    <div className="w-[500px]  bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
+    <div className="w-[32rem]  bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
       <Tabs defaultValue="userRegister">
         <TabsList className="w-full justify-around mb-4">
           <TabsTrigger value="userRegister">Rejestracja</TabsTrigger>

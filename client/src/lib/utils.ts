@@ -1,6 +1,6 @@
-import { FontSizeMode, fontSizePropertyName, fontSizes } from "./constants";
+import { FontSizeMode, fontSizes } from "./constants";
 
 export const changeGlobalFontSize = (mode: FontSizeMode) => {
   const newFontSize = fontSizes[mode];
-  document.documentElement.style.setProperty(fontSizePropertyName, newFontSize);
+  document.documentElement.style.setProperty("font-size", newFontSize);
 };

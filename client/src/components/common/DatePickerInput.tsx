@@ -37,7 +37,7 @@ const DatePickerInput = <T extends FieldValues>({
       name={name}
       render={({ field: { value, onChange } }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className="pointer-events-none">{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>

@@ -49,7 +49,7 @@ const CalendarCaptionLabel = ({
         onClick={getNavigationHandler("past", "month")}
         className={clsx("h-5 w-5", iconStyle)}
       />
-      <span className="text-md  text-center w-[170px]">{formattedDate}</span>
+      <span className="text-md  text-center w-[11rem]">{formattedDate}</span>
       <ChevronRight
         onClick={getNavigationHandler("future", "month")}
         className={clsx("h-5 w-5", iconStyle)}

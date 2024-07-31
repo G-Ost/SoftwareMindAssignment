@@ -1,16 +1,17 @@
 import { pl } from "date-fns/locale";
-import { DayPicker, DayPickerSingleProps } from "react-day-picker";
+import { DayPicker } from "react-day-picker";
 
 import CalendarCaptionLabel from "@/components/common/CalendarCaptionLabel";
 import { buttonVariants } from "@/shadcn/components/ui/button";
 import { cn } from "@/shadcn/lib/utils";
 import { useState } from "react";
 
-export type CalendarProps = DayPickerSingleProps;
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 function Calendar({ className, classNames, ...props }: CalendarProps) {
+  const selected = props.selected as Date | undefined;
   const [displayedMonth, setDisplayedMonth] = useState<Date>(
-    new Date("01-01-1970")
+    new Date(selected ?? "01-01-1970")
   );
 
   const onNavigation = (date: Date) => {
@@ -26,7 +27,7 @@ function Calendar({ className, classNames, ...props }: CalendarProps) {
       disableNavigation
       showOutsideDays
       className={cn(
-        "p-3 bg-oceanic text-white border-black border-2 w-[330px] flex justify-center",
+        "p-3 bg-oceanic text-white border-black border-2 w-[21rem] flex justify-center",
         className
       )}
       classNames={{

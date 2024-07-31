@@ -17,6 +17,7 @@ import {
   PopoverTrigger,
 } from "@/shadcn/components/ui/popover";
 import { Control, FieldValues, Path } from "react-hook-form";
+import { useState } from "react";
 
 interface DatePickerInputProps<T extends FieldValues> {
   control: Control<T>;
@@ -31,6 +32,8 @@ const DatePickerInput = <T extends FieldValues>({
   placeholder,
   label,
 }: DatePickerInputProps<T>) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <FormField
       control={control}
@@ -38,8 +41,13 @@ const DatePickerInput = <T extends FieldValues>({
       render={({ field: { value, onChange } }) => (
         <FormItem className="flex flex-col">
           <FormLabel className="pointer-events-none">{label}</FormLabel>
-          <Popover>
-            <PopoverTrigger asChild>
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger
+              onClick={() => {
+                setOpen(true);
+              }}
+              asChild
+            >
               <FormControl>
                 <Button
                   variant={"outline"}
@@ -61,7 +69,10 @@ const DatePickerInput = <T extends FieldValues>({
               <Calendar
                 mode="single"
                 selected={value}
-                onSelect={onChange}
+                onSelect={(props) => {
+                  setOpen(false);
+                  onChange(props);
+                }}
                 disabled={(date) =>
                   date > new Date("2030-01-01") || date < new Date("1900-01-01")
                 }

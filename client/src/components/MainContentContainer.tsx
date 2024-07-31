@@ -1,3 +1,4 @@
+import UserDataTable from "./UserDataTable";
 import UserRegisterForm from "./UserRegisterForm";
 import {
   Tabs,
@@ -8,7 +9,7 @@ import {
 
 const MainContentContainer = () => {
   return (
-    <div className="w-[32rem]  bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
+    <div className="w-[40rem]  bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
       <Tabs defaultValue="userRegister">
         <TabsList className="w-full justify-around mb-4">
           <TabsTrigger value="userRegister">Rejestracja</TabsTrigger>
@@ -17,7 +18,9 @@ const MainContentContainer = () => {
         <TabsContent value="userRegister">
           <UserRegisterForm />
         </TabsContent>
-        <TabsContent value="usersTable">Lorem ipsum</TabsContent>
+        <TabsContent value="usersTable">
+          <UserDataTable />
+        </TabsContent>
       </Tabs>
     </div>
   );

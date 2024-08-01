@@ -4,9 +4,10 @@ import continentRouter from "./routes/continentRouter";
 import formRouter from "./routes/formRouter";
 import sequelize from "./config/database";
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync().then(() => {
   console.log("db is ready");
 });
+
 const app = express();
 
 app.use(bodyParser.json());

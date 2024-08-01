@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
+import { getContinents } from "../controllers/continentController";
 const router = express.Router();
-const { getContinents } = require("../controllers/continentController");
 
 router.route("/").get(getContinents);
 
-module.exports = router;
+export default router;

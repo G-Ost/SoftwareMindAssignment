@@ -10,8 +10,6 @@ const continents = [
   "Europa",
 ];
 
-const getContinents = async (request: Request, response: Response) => {
+export const getContinents = async (request: Request, response: Response) => {
   response.json(continents).status(200);
 };
-
-module.exports = { getContinents };

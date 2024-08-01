@@ -1,8 +1,8 @@
-const express = require("express");
-const continentRouter = require("./routes/continentRouter");
-const userRouter = require("./routes/userRouter");
-const sequelize = require("./config/database");
+import express from "express";
 import bodyParser from "body-parser";
+import continentRouter from "./routes/continentRouter";
+import userRouter from "./routes/userRouter";
+import sequelize from "./config/database";
 
 sequelize.sync().then(() => {
   console.log("db is ready");

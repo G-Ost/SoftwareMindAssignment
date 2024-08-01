@@ -3,8 +3,23 @@ import User from "../models/User";
 
 export const createUser = async (request: Request, response: Response) => {
   const body = request.body;
-  await User.create(body);
-  response.sendStatus(200);
+  const { name, lastName, continent, birthDate } = body;
+
+  const isNameProvided = name !== undefined;
+
+  const isExtraConditionMet =
+    continent !== "Europa" || (lastName !== undefined && lastName.length > 1);
+
+  const isBrithDateValid =
+    birthDate === undefined ||
+    new Date().getTime() - new Date(birthDate).getTime() >= 0;
+
+  if (isNameProvided && isExtraConditionMet && isBrithDateValid) {
+    await User.create(body);
+    response.sendStatus(200);
+  } else {
+    response.status(400).send("Validation failed.");
+  }
 };
 
 export const getUsers = async (request: Request, response: Response) => {

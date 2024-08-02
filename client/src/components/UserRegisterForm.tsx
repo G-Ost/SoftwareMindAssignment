@@ -10,12 +10,13 @@ import { useEffect } from "react";
 import { differenceInYears } from "date-fns";
 import { changeGlobalFontSize, fetcher } from "@/lib/utils";
 import { FontSizeMode } from "@/lib/constants";
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import LoadingSpinner from "./common/LoadingSpinner";
+import { createUser } from "@/lib/userService";
 
 const formSchema = yup.object().shape({
-  continent: yup.string(),
   name: yup.string().required(),
+  continent: yup.string(),
   lastName: yup.string(),
   birthDate: yup.date(),
 });
@@ -25,19 +26,20 @@ const UserRegisterForm = () => {
     data: continents,
     isLoading: isContinentsDataLoading,
     error: continentsFetchingError,
-  } = useSWR<string[]>("/api/continents", fetcher);
+  } = useSWRImmutable<string[]>("/api/continents", fetcher);
 
   const form = useForm({
     resolver: yupResolver(formSchema),
+    resetOptions: {},
     defaultValues: {
-      continent: undefined,
-      name: undefined,
-      lastName: undefined,
+      continent: "",
+      name: "",
+      lastName: "",
       birthDate: undefined,
     },
   });
 
-  const { handleSubmit, control, setValue, watch } = form;
+  const { handleSubmit, control, setValue, watch, reset } = form;
 
   const birthDate = watch("birthDate");
 
@@ -51,8 +53,18 @@ const UserRegisterForm = () => {
     }
   }, [birthDate]);
 
-  const onSubmit = (values: yup.InferType<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: yup.InferType<typeof formSchema>) => {
+    try {
+      const response = await createUser({ ...values });
+      if (response.ok) {
+        alert("sukces!");
+        reset();
+      } else {
+        throw new Error();
+      }
+    } catch (e) {
+      alert("Coś poszło nie tak, spróbuj ponownie później.");
+    }
   };
 
   if (isContinentsDataLoading) {

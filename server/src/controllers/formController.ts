@@ -5,21 +5,30 @@ export const createUser = async (request: Request, response: Response) => {
   const body = request.body;
   const { name, lastName, continent, birthDate } = body;
 
-  const isNameProvided = name !== undefined;
+  const isNameProvided = !!name;
+
+  if (!isNameProvided) {
+    return response.status(400).send("Name is required.");
+  }
 
   const isExtraConditionMet =
     continent !== "Europa" || (lastName !== undefined && lastName.length > 1);
+
+  if (!isExtraConditionMet) {
+    return response
+      .status(400)
+      .send("Europians needs to have last name at least 2 characters long.");
+  }
 
   const isBrithDateValid =
     birthDate === undefined ||
     new Date().getTime() - new Date(birthDate).getTime() >= 0;
 
-  if (isNameProvided && isExtraConditionMet && isBrithDateValid) {
-    await User.create(body);
-    response.sendStatus(200);
-  } else {
-    response.status(400).send("Validation failed.");
+  if (!isBrithDateValid) {
+    return response.status(400).send("User's birthdate is in the future.");
   }
+  await User.create(body);
+  return response.sendStatus(200);
 };
 
 export const getUsers = async (request: Request, response: Response) => {

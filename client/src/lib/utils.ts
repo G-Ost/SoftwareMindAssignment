@@ -8,3 +8,10 @@ export const changeGlobalFontSize = (mode: FontSizeMode) => {
 
 export const fetcher = (url: string) =>
   fetch(url).then((response) => response.json());
+
+export const getTableValue = (value: string | undefined) => {
+  if (!value || value.length === 0) {
+    return "-";
+  }
+  return value;
+};

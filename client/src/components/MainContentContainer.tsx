@@ -9,7 +9,7 @@ import {
 
 const MainContentContainer = () => {
   return (
-    <div className="w-[40rem] max-h-[44rem] h-[34rem] overflow-y-auto bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
+    <div className="w-[43rem] max-h-[44rem] h-[34rem] overflow-y-auto bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
       <Tabs
         defaultValue="userRegister"
         className="h-full relative flex flex-col"

@@ -81,7 +81,7 @@ const UserRegisterForm = () => {
 
   if (continentsFetchingError || !continents || continents.length === 0) {
     return (
-      <div className="flex justify-center items-center font-bold h-full">
+      <div className="flex justify-center text-sm pt-14 font-bold h-full">
         Coś poszło nie tak. Spróbuj ponownie później.
       </div>
     );

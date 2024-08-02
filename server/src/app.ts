@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import continentRouter from "./routes/continentRouter";
+import continentsRouter from "./routes/continentsRouter";
 import formRouter from "./routes/formRouter";
 import sequelize from "./config/database";
 import helmet from "helmet";
@@ -13,9 +13,9 @@ const app = express();
 
 app.use(helmet());
 app.use(bodyParser.json());
-app.use("/api/continent", continentRouter);
+app.use("/api/continents", continentsRouter);
 app.use("/api/form", formRouter);
 
-app.listen(3000, () => {
+app.listen(3010, () => {
   console.log("app is running");
 });

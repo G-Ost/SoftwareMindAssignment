@@ -73,7 +73,7 @@ const UserRegisterForm = () => {
 
   if (isContinentsDataLoading) {
     return (
-      <div className="flex justify-center items-center flex-1">
+      <div className="flex justify-center items-center bg-green-400 h-full">
         <LoadingSpinner size={60} />
       </div>
     );
@@ -81,7 +81,7 @@ const UserRegisterForm = () => {
 
   if (continentsFetchingError || !continents || continents.length === 0) {
     return (
-      <div className="flex justify-center flex-1 items-center font-bold">
+      <div className="flex justify-center items-center font-bold h-full">
         Coś poszło nie tak. Spróbuj ponownie później.
       </div>
     );

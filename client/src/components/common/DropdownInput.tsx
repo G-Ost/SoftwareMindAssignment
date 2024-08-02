@@ -1,5 +1,5 @@
 import { FormField, FormItem, FormLabel } from "@/shadcn/components/ui/form";
-import { Control, FieldValues, Path } from "react-hook-form";
+import { Control, FieldValues, Path, useFormContext } from "react-hook-form";
 import Combobox from "./Combobox";
 
 interface DropdownInputProps<T extends FieldValues> {
@@ -19,6 +19,10 @@ const DropdownInput = <T extends FieldValues>({
   options,
   onSetValue,
 }: DropdownInputProps<T>) => {
+  const {
+    formState: { errors },
+  } = useFormContext<T>();
+  const fieldError = errors[name];
   return (
     <FormField
       control={control}
@@ -32,6 +36,11 @@ const DropdownInput = <T extends FieldValues>({
             value={value}
             setValue={onSetValue}
           />
+          {fieldError && (
+            <span className="text-red-500">
+              {fieldError.message?.toString()}
+            </span>
+          )}
         </FormItem>
       )}
     />

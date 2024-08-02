@@ -1,6 +1,7 @@
 import { Check, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 
+import { cn } from "@/shadcn/lib/utils";
 import { Button } from "@/shadcn/components/ui/button";
 import {
   Command,
@@ -13,7 +14,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/shadcn/components/ui/popover";
-import { cn } from "@/shadcn/lib/utils";
 
 interface ComboboxProps {
   placeholder: string;
@@ -63,7 +63,7 @@ const Combobox = ({ options, placeholder, value, setValue }: ComboboxProps) => {
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue);
+                    setValue(value === currentValue ? "" : currentValue);
                     setOpen(false);
                   }}
                 >

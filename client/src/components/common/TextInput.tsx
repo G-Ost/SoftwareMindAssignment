@@ -5,7 +5,7 @@ import {
   FormLabel,
 } from "@/shadcn/components/ui/form";
 import { Input } from "@/shadcn/components/ui/input";
-import { Control, FieldValues, Path } from "react-hook-form";
+import { Control, FieldValues, Path, useFormContext } from "react-hook-form";
 
 interface TextInputProps<T extends FieldValues> {
   control: Control<T>;
@@ -20,6 +20,10 @@ const TextInput = <T extends FieldValues>({
   placeholder,
   label,
 }: TextInputProps<T>) => {
+  const {
+    formState: { errors },
+  } = useFormContext<T>();
+  const fieldError = errors[name];
   return (
     <FormField
       control={control}
@@ -30,6 +34,11 @@ const TextInput = <T extends FieldValues>({
           <FormControl>
             <Input placeholder={placeholder} {...field} />
           </FormControl>
+          {fieldError && (
+            <span className="text-red-500">
+              {fieldError.message?.toString()}
+            </span>
+          )}
         </FormItem>
       )}
     />

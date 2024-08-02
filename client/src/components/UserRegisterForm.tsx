@@ -7,7 +7,7 @@ import DropdownInput from "./common/DropdownInput";
 import TextInput from "./common/TextInput";
 import DatePickerInput from "./common/DatePickerInput";
 import { useEffect } from "react";
-import { differenceInYears } from "date-fns";
+import { differenceInYears, isFuture } from "date-fns";
 import { changeGlobalFontSize, fetcher } from "@/lib/utils";
 import { FontSizeMode } from "@/lib/constants";
 import useSWRImmutable from "swr/immutable";
@@ -15,8 +15,12 @@ import LoadingSpinner from "./common/LoadingSpinner";
 import { createUser } from "@/lib/userService";
 
 const formSchema = yup.object().shape({
-  name: yup.string().required(),
-  continent: yup.string(),
+  continent: yup.string().when("lastName", ([lastName], schema) => {
+    return lastName.length < 2
+      ? schema.notOneOf(["Europa"], "Nie spełnione kryteria")
+      : schema.notRequired();
+  }),
+  name: yup.string().required("To pole jest wymagane"),
   lastName: yup.string(),
   birthDate: yup.date(),
 });
@@ -42,7 +46,7 @@ const UserRegisterForm = () => {
   const { handleSubmit, control, setValue, watch, reset } = form;
 
   const birthDate = watch("birthDate");
-
+  const isSubmitDisabled = birthDate && isFuture(birthDate);
   useEffect(() => {
     if (birthDate) {
       const usersAge = differenceInYears(new Date(), birthDate);
@@ -96,7 +100,7 @@ const UserRegisterForm = () => {
         <TextInput
           control={control}
           name="name"
-          label="Imię"
+          label="Imię*"
           placeholder="Wpisz tutaj..."
         />
         <TextInput
@@ -121,7 +125,11 @@ const UserRegisterForm = () => {
           placeholder="Wybierz datę..."
           label="Data urodzenia"
         />
-        <Button className="bg-oceanic text-white mt-4" type="submit">
+        <Button
+          disabled={isSubmitDisabled}
+          className="bg-oceanic text-white mt-4"
+          type="submit"
+        >
           Wyślij
         </Button>
       </form>

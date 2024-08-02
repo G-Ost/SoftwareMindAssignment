@@ -73,7 +73,7 @@ const UserRegisterForm = () => {
 
   if (isContinentsDataLoading) {
     return (
-      <div className="flex justify-center items-center bg-green-400 h-full">
+      <div className="flex justify-center items-center h-full">
         <LoadingSpinner size={60} />
       </div>
     );

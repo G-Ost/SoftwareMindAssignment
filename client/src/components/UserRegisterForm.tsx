@@ -8,40 +8,10 @@ import TextInput from "./common/TextInput";
 import DatePickerInput from "./common/DatePickerInput";
 import { useEffect } from "react";
 import { differenceInYears } from "date-fns";
-import { changeGlobalFontSize } from "@/lib/utils";
+import { changeGlobalFontSize, fetcher } from "@/lib/utils";
 import { FontSizeMode } from "@/lib/constants";
-
-// ToDo replace mocks with fetched data
-const continents = [
-  {
-    value: "africa",
-    label: "Afryka",
-  },
-  {
-    value: "southAmerica",
-    label: "Ameryka Południowa",
-  },
-  {
-    value: "northAmerica",
-    label: "Ameryka Północna",
-  },
-  {
-    value: "Antarctica",
-    label: "Antarktyda",
-  },
-  {
-    value: "Australia",
-    label: "Australia",
-  },
-  {
-    value: "Azja",
-    label: "Azja",
-  },
-  {
-    value: "Europa",
-    label: "Europa",
-  },
-];
+import useSWR from "swr";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 const formSchema = yup.object().shape({
   continent: yup.string(),
@@ -51,6 +21,12 @@ const formSchema = yup.object().shape({
 });
 
 const UserRegisterForm = () => {
+  const {
+    data: continents,
+    isLoading: isContinentsDataLoading,
+    error: continentsFetchingError,
+  } = useSWR<string[]>("/api/continents", fetcher);
+
   const form = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -79,11 +55,31 @@ const UserRegisterForm = () => {
     console.log(values);
   };
 
+  if (isContinentsDataLoading) {
+    return (
+      <div className="flex justify-center items-center flex-1">
+        <LoadingSpinner size={60} />
+      </div>
+    );
+  }
+
+  if (continentsFetchingError || !continents || continents.length === 0) {
+    return (
+      <div className="flex justify-center flex-1 items-center font-bold">
+        Coś poszło nie tak. Spróbuj ponownie później.
+      </div>
+    );
+  }
+  const continentDropdownOptions = continents.map((continent) => ({
+    label: continent,
+    value: continent,
+  }));
+
   return (
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-4 grid grid-cols-1"
+        className="gap-4 grid grid-cols-1 w-full"
       >
         <TextInput
           control={control}
@@ -103,7 +99,7 @@ const UserRegisterForm = () => {
           onSetValue={(newValue: string) => {
             setValue("continent", newValue);
           }}
-          options={continents}
+          options={continentDropdownOptions}
           placeholder="Wybierz kontynent..."
           label="Kontynent"
         />

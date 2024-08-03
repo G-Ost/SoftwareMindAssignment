@@ -24,6 +24,8 @@ const TextInput = <T extends FieldValues>({
     formState: { errors },
   } = useFormContext<T>();
   const fieldError = errors[name];
+  const errorId = `${name}-error`;
+
   return (
     <FormField
       control={control}
@@ -32,10 +34,10 @@ const TextInput = <T extends FieldValues>({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input placeholder={placeholder} {...field} type="text" />
           </FormControl>
           {fieldError && (
-            <span className="text-red-500">
+            <span id={errorId} className="text-red-500">
               {fieldError.message?.toString()}
             </span>
           )}

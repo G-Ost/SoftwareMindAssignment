@@ -23,6 +23,8 @@ const DropdownInput = <T extends FieldValues>({
     formState: { errors },
   } = useFormContext<T>();
   const fieldError = errors[name];
+  const errorId = `${name}-error`;
+
   return (
     <FormField
       control={control}
@@ -37,7 +39,7 @@ const DropdownInput = <T extends FieldValues>({
             setValue={onSetValue}
           />
           {fieldError && (
-            <span className="text-red-500">
+            <span id={errorId} className="text-red-500">
               {fieldError.message?.toString()}
             </span>
           )}

@@ -88,12 +88,15 @@ const UserDataTable = () => {
               {birthDate ? format(birthDate, "dd-MM-yyyy") : "-"}
             </TableCell>
             <TableCell>
-              <Trash2Icon
+              <button
                 onClick={() => {
                   onDeleteUser(id);
                 }}
-                className={clsx("h-6 w-6 cursor-pointer hover:opacity-25")}
-              />
+                className={clsx("h-6 w-6 cursor-pointer hover:opacity-25 flex")}
+                aria-label="Delete user"
+              >
+                <Trash2Icon />
+              </button>
             </TableCell>
           </TableRow>
         ))}

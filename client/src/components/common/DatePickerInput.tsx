@@ -52,7 +52,7 @@ const DatePickerInput = <T extends FieldValues>({
                 <Button
                   variant={"outline"}
                   className={cn(
-                    "w-full pl-3 text-left font-normal",
+                    "w-full pl-3 text-left font-normal border-2",
                     !value && "text-muted-foreground"
                   )}
                 >

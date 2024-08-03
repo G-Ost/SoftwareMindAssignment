@@ -42,7 +42,7 @@ const Combobox = ({ options, placeholder, value, setValue }: ComboboxProps) => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between w-full font-normal"
+          className="justify-between w-full font-normal border-2"
         >
           {value
             ? options.find((option) => option.value === value)?.label

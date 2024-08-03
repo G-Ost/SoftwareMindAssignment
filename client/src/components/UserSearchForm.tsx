@@ -47,6 +47,8 @@ const UserSearchForm = () => {
         {userId && <UserSearchResult userId={userId} />}
         <Button
           disabled={!isValid}
+          aria-disabled={!isValid}
+          aria-label="Szukaj"
           className="bg-oceanic text-white mt-auto"
           type="submit"
         >

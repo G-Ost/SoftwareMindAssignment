@@ -126,6 +126,8 @@ const UserRegisterForm = () => {
         />
         <Button
           disabled={isSubmitDisabled}
+          aria-disabled={!isSubmitDisabled}
+          aria-label="Wyślij"
           className="bg-oceanic text-white mt-4"
           type="submit"
         >

@@ -1,5 +1,5 @@
 import { deleteUserById, User } from "@/lib/userService";
-import { fetcher, getTableValue } from "@/lib/utils";
+import { fetcher, getDisplayValue } from "@/lib/utils";
 import {
   Table,
   TableBody,
@@ -79,10 +79,10 @@ const UserDataTable = () => {
             <TableCell>{id}</TableCell>
             <TableCell>{name}</TableCell>
             <TableCell className="text-center">
-              {getTableValue(lastName)}
+              {getDisplayValue(lastName)}
             </TableCell>
             <TableCell className="text-center">
-              {getTableValue(continent)}
+              {getDisplayValue(continent)}
             </TableCell>
             <TableCell className="text-center">
               {birthDate ? format(birthDate, "dd-MM-yyyy") : "-"}

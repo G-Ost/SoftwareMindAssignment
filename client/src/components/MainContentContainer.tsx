@@ -6,6 +6,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/shadcn/components/ui/tabs";
+import UserSearchForm from "./UserSearchForm";
 
 const MainContentContainer = () => {
   return (
@@ -17,12 +18,16 @@ const MainContentContainer = () => {
         <TabsList className="w-full justify-around mb-4">
           <TabsTrigger value="userRegister">Rejestracja</TabsTrigger>
           <TabsTrigger value="usersTable">Użytkownicy</TabsTrigger>
+          <TabsTrigger value="userSearch">Szukaj</TabsTrigger>
         </TabsList>
         <TabsContent value="userRegister" className="h-full">
           <UserRegisterForm />
         </TabsContent>
         <TabsContent value="usersTable" className="h-full">
           <UserDataTable />
+        </TabsContent>
+        <TabsContent value="userSearch" className="h-full">
+          <UserSearchForm />
         </TabsContent>
       </Tabs>
     </div>

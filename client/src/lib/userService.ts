@@ -29,6 +29,5 @@ export const createUser = async (userData: NewUser) => {
 };
 
 export const deleteUserById = async (userId: number) => {
-  const response = await fetch(`/api/form/${userId}`, { method: "DELETE" });
-  return response;
+  return fetch(`/api/form/${userId}`, { method: "DELETE" });
 };

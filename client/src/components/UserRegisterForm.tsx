@@ -34,7 +34,6 @@ const UserRegisterForm = () => {
 
   const form = useForm({
     resolver: yupResolver(formSchema),
-    resetOptions: {},
     defaultValues: {
       continent: "",
       name: "",

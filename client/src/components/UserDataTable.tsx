@@ -62,6 +62,7 @@ const UserDataTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead className="w-12">ID</TableHead>
           <TableHead>Imię</TableHead>
           <TableHead className="text-center">Nazwisko</TableHead>
           <TableHead className="text-center">Kontynent</TableHead>
@@ -75,6 +76,7 @@ const UserDataTable = () => {
             className={clsx(index % 2 === 0 && "bg-oceanic text-white")}
             key={id}
           >
+            <TableCell>{id}</TableCell>
             <TableCell>{name}</TableCell>
             <TableCell className="text-center">
               {getTableValue(lastName)}

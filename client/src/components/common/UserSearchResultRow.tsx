@@ -9,7 +9,7 @@ const UserSearchResultRow = ({ label, value }: UserSearchResultRowProps) => {
   return (
     <div className="flex justify-between text-sm gap-20">
       <span className="font-bold">{`${label}:`}</span>
-      <span>{getDisplayValue(value)}</span>
+      <span className="truncate max-w-[14remx]">{getDisplayValue(value)}</span>
     </div>
   );
 };

@@ -44,7 +44,7 @@ const UserSearchResult = ({ userId }: UserSearchResult) => {
   ];
 
   return (
-    <div className="flex flex-col gap-2 mt-4 min-w-0 w-fit">
+    <div className="flex flex-col gap-2 mt-4 min-w-0 w-fit max-w-full">
       {userDataMap.map((entry) => (
         <UserSearchResultRow key={entry.label} {...entry} />
       ))}

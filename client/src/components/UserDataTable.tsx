@@ -77,8 +77,8 @@ const UserDataTable = () => {
             key={id}
           >
             <TableCell>{id}</TableCell>
-            <TableCell>{name}</TableCell>
-            <TableCell className="text-center">
+            <TableCell className="max-w-[7rem] truncate">{name}</TableCell>
+            <TableCell className="text-center max-w-[7rem] truncate">
               {getDisplayValue(lastName)}
             </TableCell>
             <TableCell className="text-center">

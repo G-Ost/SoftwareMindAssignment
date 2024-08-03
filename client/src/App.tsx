@@ -1,4 +1,4 @@
-import MainContentContainer from "./components/MainContentContainer";
+import MainContentContainer from "./components/TabsContainer";
 import worldMapImage from "./assets/worldMapImage.jpg";
 
 function App() {

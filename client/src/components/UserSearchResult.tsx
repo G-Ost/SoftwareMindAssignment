@@ -23,7 +23,15 @@ const UserSearchResult = ({ userId }: UserSearchResult) => {
     );
   }
 
-  if (error || !data) {
+  if (error) {
+    return (
+      <div className="text-md mt-5 text-center font-bold">
+        Wystąpił błąd, spróbuj ponownie później.
+      </div>
+    );
+  }
+
+  if (!data) {
     return (
       <div className="text-md mt-5 text-center font-bold">
         Nie znaleziono użytkownika.

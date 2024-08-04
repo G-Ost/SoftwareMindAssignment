@@ -23,7 +23,7 @@ const UserDataTable = () => {
     isValidating: isUserDataValidating,
     error,
     mutate,
-  } = useSWR<User[]>("/api/form", fetcher);
+  } = useSWR<User[]>("/api/form", fetcher, { shouldRetryOnError: false });
 
   const onDeleteUser = useCallback(
     async (userId: number) => {

@@ -12,7 +12,8 @@ interface UserSearchResult {
 const UserSearchResult = ({ userId }: UserSearchResult) => {
   const { data, isLoading, error, isValidating } = useSWR<User>(
     `/api/form/${userId}`,
-    fetcher
+    fetcher,
+    { shouldRetryOnError: false }
   );
 
   if (isLoading || isValidating) {

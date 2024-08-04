@@ -30,7 +30,9 @@ const UserRegisterForm = () => {
     data: continents,
     isLoading: isContinentsDataLoading,
     error: continentsFetchingError,
-  } = useSWRImmutable<string[]>("/api/continents", fetcher);
+  } = useSWRImmutable<string[]>("/api/continents", fetcher, {
+    shouldRetryOnError: false,
+  });
 
   const form = useForm({
     resolver: yupResolver(formSchema),

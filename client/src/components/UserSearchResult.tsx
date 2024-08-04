@@ -1,7 +1,7 @@
 import { User } from "@/lib/userService";
 import { fetcher } from "@/lib/utils";
 import { format } from "date-fns";
-import useSWRImmutable from "swr/immutable";
+import useSWR from "swr";
 import LoadingSpinner from "./common/LoadingSpinner";
 import UserSearchResultRow from "./UserSearchResultRow";
 
@@ -10,12 +10,12 @@ interface UserSearchResult {
 }
 
 const UserSearchResult = ({ userId }: UserSearchResult) => {
-  const { data, isLoading, error } = useSWRImmutable<User>(
+  const { data, isLoading, error, isValidating } = useSWR<User>(
     `/api/form/${userId}`,
     fetcher
   );
 
-  if (isLoading) {
+  if (isLoading || isValidating) {
     return (
       <div className="flex justify-center items-center h-full">
         <LoadingSpinner size={60} />

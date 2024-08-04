@@ -11,5 +11,5 @@ const continents = [
 ];
 
 export const getContinents = async (request: Request, response: Response) => {
-  response.json(continents).status(200);
+  response.status(200).json(continents);
 };

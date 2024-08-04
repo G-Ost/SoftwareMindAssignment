@@ -10,7 +10,7 @@ import {
 } from "@/shadcn/components/ui/table";
 import clsx from "clsx";
 import { format } from "date-fns";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import LoadingSpinner from "./common/LoadingSpinner";
 import { Trash2Icon } from "lucide-react";
 import { useCallback, useState } from "react";
@@ -22,22 +22,24 @@ const UserDataTable = () => {
     isLoading: isUserDataLoading,
     isValidating: isUserDataValidating,
     error,
-    mutate,
+    mutate: mutateTableData,
   } = useSWR<User[]>("/api/form", fetcher, { shouldRetryOnError: false });
+  const { mutate: mutateUserData } = useSWRConfig();
 
   const onDeleteUser = useCallback(
     async (userId: number) => {
       setIsDeletingUser(true);
       try {
         await deleteUserById(userId);
-        mutate();
+        mutateTableData();
+        mutateUserData(`/api/form/${userId}`, null); // Revalidate cache
       } catch (_) {
         alert("Coś poszło nie tak, spróbuj później.");
       } finally {
         setIsDeletingUser(false);
       }
     },
-    [mutate]
+    [mutateTableData, mutateUserData]
   );
 
   const isLoading = isUserDataLoading || isDeletingUser || isUserDataValidating;

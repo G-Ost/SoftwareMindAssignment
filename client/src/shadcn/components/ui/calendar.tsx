@@ -11,7 +11,7 @@ export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 function Calendar({ className, classNames, ...props }: CalendarProps) {
   const selected = props.selected as Date | undefined;
   const [displayedMonth, setDisplayedMonth] = useState<Date>(
-    new Date(selected ?? "01-01-2020")
+    new Date(selected ?? "01-01-1990")
   );
 
   const onNavigation = (date: Date) => {

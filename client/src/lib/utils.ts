@@ -11,7 +11,7 @@ export const fetcher = async (url: string) => {
   const res = await fetch(url);
 
   if (!res.ok) {
-    const { error: errorMessage } = await res.json();
+    const { message: errorMessage } = await res.json();
     const error: HttpError = {
       message: errorMessage,
       status: res.status,

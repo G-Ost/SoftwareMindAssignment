@@ -4,13 +4,14 @@ import { format } from "date-fns";
 import useSWR from "swr";
 import LoadingSpinner from "./common/LoadingSpinner";
 import UserSearchResultRow from "./UserSearchResultRow";
+import { HttpError } from "@/lib/types";
 
 interface UserSearchResult {
   userId: string;
 }
 
 const UserSearchResult = ({ userId }: UserSearchResult) => {
-  const { data, isLoading, error, isValidating } = useSWR<User>(
+  const { data, isLoading, error, isValidating } = useSWR<User, HttpError>(
     `/api/form/${userId}`,
     fetcher,
     { shouldRetryOnError: false }
@@ -24,7 +25,7 @@ const UserSearchResult = ({ userId }: UserSearchResult) => {
     );
   }
 
-  if (error) {
+  if (error && error.status !== 404) {
     return (
       <div className="text-md mt-5 text-center font-bold">
         Wystąpił błąd, spróbuj ponownie później.

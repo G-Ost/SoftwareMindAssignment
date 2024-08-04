@@ -94,7 +94,7 @@ const UserRegisterForm = () => {
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-4 grid grid-cols-1 w-full"
+        className="gap-1 grid grid-cols-1 w-full"
       >
         <TextInput
           control={control}

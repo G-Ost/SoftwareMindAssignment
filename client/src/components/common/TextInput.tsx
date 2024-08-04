@@ -31,7 +31,7 @@ const TextInput = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="h-24">
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input placeholder={placeholder} {...field} type="text" />

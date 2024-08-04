@@ -10,12 +10,12 @@ import UserSearchForm from "./UserSearchForm";
 
 const MainContentContainer = () => {
   return (
-    <div className="w-[43rem] max-h-[44rem] h-[34rem] overflow-y-auto bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
+    <div className="w-[43rem] h-[36rem] min-h-[36rem] overflow-y-auto bg-softBlue rounded-xl p-6 border-2 border-black border-solid">
       <Tabs
         defaultValue="userRegister"
         className="h-full relative flex flex-col"
       >
-        <TabsList className="w-full justify-around mb-4">
+        <TabsList className="w-full justify-around mb-4 gap-1">
           <TabsTrigger value="userRegister">Rejestracja</TabsTrigger>
           <TabsTrigger value="usersTable">Użytkownicy</TabsTrigger>
           <TabsTrigger value="userSearch">Szukaj</TabsTrigger>

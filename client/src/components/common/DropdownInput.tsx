@@ -30,7 +30,7 @@ const DropdownInput = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field: { value } }) => (
-        <FormItem>
+        <FormItem className="h-24">
           <FormLabel>{label}</FormLabel>
           <Combobox
             options={options}

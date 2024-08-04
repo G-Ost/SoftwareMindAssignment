@@ -2,7 +2,7 @@ import { User } from "@/lib/userService";
 import { fetcher } from "@/lib/utils";
 import { format } from "date-fns";
 import useSWRImmutable from "swr/immutable";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./common/LoadingSpinner";
 import UserSearchResultRow from "./UserSearchResultRow";
 
 interface UserSearchResult {

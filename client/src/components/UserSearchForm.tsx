@@ -5,7 +5,7 @@ import { Form } from "@/shadcn/components/ui/form";
 import { Button } from "@/shadcn/components/ui/button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import UserSearchResult from "./common/UserSearchResult";
+import UserSearchResult from "./UserSearchResult";
 
 const formSchema = yup.object().shape({
   userId: yup.string().required(),
